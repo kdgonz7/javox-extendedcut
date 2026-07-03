@@ -1,29 +1,13 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, undefined-field
 ---@diagnostic disable: inject-field
 
 if ! JaVox then return end
 
---[[
-	Player Inactivity Hook for Garry's Mod
-
-	This script provides a framework to automatically trigger a specified action
-	when a player remains inactive for a configurable duration.
-
-	Features:
-	- Inactivity detection based on player movement and activity.
-	- Configurable inactivity time limit via convar.
-	- Enable/disable toggle for the entire system via convar.
-	- Data-driven structure for easy management of player states.
-	- Placeholder function for the action to be triggered.
-]]
-
--- Configuration Variables
 local INACTIVITY_THRESHOLD = 5
 
--- ConVars
 local inactivityEnabledConvar = CreateConVar(
     "javox_inactivity_hook_enabled",
-    "1", -- Default to enabled
+    "1",
     { FCVAR_ARCHIVE + FCVAR_REPLICATED },
     "Enables or disables the player inactivity hook."
 )
@@ -35,8 +19,6 @@ local inactivityThresholdConvar = CreateConVar(
     "The time in seconds a player must be inactive before triggering the action."
 )
 
--- Data Structure for Player States
--- Stores the last active time for each player.
 local playerActivity = {}
 
 local function HandlePlayerInactivityAction(player)
@@ -45,7 +27,6 @@ local function HandlePlayerInactivityAction(player)
     end
 end
 
--- Function to update a player's last active time.
 local function UpdatePlayerActivity(player)
     if IsValid(player) and player:IsPlayer() then
         playerActivity[player:SteamID64()] = CurTime()
