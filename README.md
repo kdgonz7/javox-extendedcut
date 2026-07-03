@@ -1,9 +1,12 @@
 # JAVOX: Director's Cut
 
-- Standing reload (`weaponry.reload.standing`)
-- Action reload (`weaponry.reload.moving`, `weaponry.reload.while_viewing_enemy`)
+- Reloading Modifications:
+  - `weaponry.reload.standing_while_viewing_enemy`
+  - `weaponry.reload.standing`
+  - `weaponry.reload.moving_while_viewing_enemy`
+  - `weaponry.reload.moving`
 - Talking, **Idle Chatter** (`self.talk`)
-- **NPC Bumping** Direct Support (`ents.bump`)
 - Death (`self.die`)
 - Mid-fall (`self.falling`)
 - Self-grenade (`weaponry.grenade_self`)
+- Others-grenade (`weaponry.grenade_other`)
