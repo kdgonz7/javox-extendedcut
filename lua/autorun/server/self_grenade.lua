@@ -1,4 +1,9 @@
+local grenadeDetectorEnabled = CreateConVar("javox_grenade_detector", "1", { FCVAR_ARCHIVE, FCVAR_REPLICATED },
+    "Enable/disable the JaVox grenade proximity detector.")
+
 local function CheckGrenadeProximity()
+    if grenadeDetectorEnabled:GetBool() == false then return end
+
     for _, ply in ipairs(player.GetAll()) do
         if not ply:Alive() then continue end
 
@@ -37,4 +42,6 @@ local function CheckGrenadeProximity()
     end
 end
 
-timer.Create("JaVox_GrenadeDetectorTimer", 0.2, 0, CheckGrenadeProximity)
+if not timer.Exists("JaVox_GrenadeDetectorTimer") then
+    timer.Create("JaVox_GrenadeDetectorTimer", 0.2, 0, CheckGrenadeProximity)
+end
