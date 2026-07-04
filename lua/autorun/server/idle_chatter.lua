@@ -8,14 +8,14 @@ local INACTIVITY_THRESHOLD = 5
 local inactivityEnabledConvar = CreateConVar(
     "javox_inactivity_hook_enabled",
     "1",
-    { FCVAR_ARCHIVE + FCVAR_REPLICATED },
+    { FCVAR_ARCHIVE, FCVAR_REPLICATED, FCVAR_NOTIFY },
     "Enables or disables the player inactivity hook."
 )
 
 local inactivityThresholdConvar = CreateConVar(
     "javox_inactivity_hook_threshold",
     tostring(INACTIVITY_THRESHOLD),
-    { FCVAR_ARCHIVE + FCVAR_REPLICATED },
+    { FCVAR_ARCHIVE, FCVAR_REPLICATED, FCVAR_NOTIFY },
     "The time in seconds a player must be inactive before triggering the action."
 )
 
