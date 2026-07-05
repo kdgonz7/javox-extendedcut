@@ -33,6 +33,8 @@ hook.Add("KeyPress", "JaVox_KeyPress_Reload_Enhanced", function(ply, key)
 
     if clip1 >= maxclip1 then return end
 
+
+
     local ammoType = activeWeapon.GetPrimaryAmmoType and activeWeapon:GetPrimaryAmmoType() or -1
     local reserveAmmo = ammoType ~= -1 and ply:GetAmmoCount(ammoType) or 0
 
@@ -66,6 +68,13 @@ hook.Add("KeyPress", "JaVox_KeyPress_Reload_Enhanced", function(ply, key)
         end
     end
 
+    local preset = ply:GetNWString(JAVOX_PRESET, "")
+    if JaVox.vox[preset] and JaVox.vox[preset].tags and table.HasValue(JaVox.vox[preset].tags, "tfa_vox") then
+        JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload")
+
+        return
+    end
+
     if isMoving then
         if viewingEnemy then
             JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload.moving_while_viewing_enemy")
@@ -76,6 +85,7 @@ hook.Add("KeyPress", "JaVox_KeyPress_Reload_Enhanced", function(ply, key)
         if viewingEnemy then
             JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload.standing_while_viewing_enemy")
         else
+            print("Stand")
             JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload.standing")
         end
     end
