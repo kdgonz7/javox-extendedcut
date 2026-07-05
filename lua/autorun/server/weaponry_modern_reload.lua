@@ -71,7 +71,6 @@ hook.Add("KeyPress", "JaVox_KeyPress_Reload_Enhanced", function(ply, key)
     local preset = ply:GetNWString(JAVOX_PRESET, "")
     if JaVox.vox[preset] and JaVox.vox[preset].tags and table.HasValue(JaVox.vox[preset].tags, "tfa_vox") then
         JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload")
-
         return
     end
 
@@ -85,7 +84,6 @@ hook.Add("KeyPress", "JaVox_KeyPress_Reload_Enhanced", function(ply, key)
         if viewingEnemy then
             JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload.standing_while_viewing_enemy")
         else
-            print("Stand")
             JaVox.Director:emitActionFromPlayer(ply, "weaponry.reload.standing")
         end
     end
